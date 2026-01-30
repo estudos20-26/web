@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Language Journey - Aprenda Inglês Viajando</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="new.js" defer></script>
+
+  <style>
+    :root {
+      --travel-blue: #4833a7;
+      --travel-light-blue: #130744;
+      --travel-green: #7b3d87;
+      --travel-yellow: #432f9b;
+      --travel-red: #ffffff;
+      --paper: #f8f5e9;
+      --paper-dark: #e8e5d9;
+      --ink: #2e3436;
+      --ink-light: #5e5c64;
+      --border: #c0bfbc;
+      --stamp: #6122a0;
+      --highlight: #f9f06b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                  url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1000');
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header - Passaporte Style */
+    .passport-header {
+      background: linear-gradient(to right, var(--travel-blue), #0d4a9c);
+      color: white;
+      border-radius: 12px 12px 0 0;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      border-bottom: 5px solid var(--travel-yellow);
+    }
+
+    .passport-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--travel-red),
+        var(--travel-red) 10px,
+        var(--travel-yellow) 10px,
+        var(--travel-yellow) 20px
+      );
+    }
+
+    .passport-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .passport-subtitle {
+      font-family: 'Cabin', sans-serif;
+      font-size: 16px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .passport-stamp {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px dashed var(--travel-yellow);
+      right: 25px;
+      top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--travel-yellow);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Layout de duas colunas */
+    .content-columns {
+      display: flex;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Notebook Cards */
+    .notebook-card {
+      background-color: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notebook-card::before {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #ff6b6b;
+      opacity: 0.3;
+    }
+
+    .card-header {
+      background-color: var(--paper-dark);
+      padding: 20px 25px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .card-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--travel-blue);
+      margin: 0;
+    }
+
+    .header-icon {
+      margin-right: 15px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--travel-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .stamp {
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cabin', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--stamp);
+      padding: 5px 10px;
+      border: 2px solid var(--stamp);
+      border-radius: 3px;
+      opacity: 0.8;
+      letter-spacing: 1px;
+    }
+
+    .card-content {
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .situation-label {
+      font-family: 'Cabin', sans-serif;
+      font-weight: 600;
+      color: var(--travel-green);
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .situation-label i {
+      margin-right: 8px;
+    }
+
+    .situation-text {
+      font-size: 19px;
+      margin: 12px 0 20px 0;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1.5;
+      padding-left: 5px;
+      border-left: 3px solid var(--travel-light-blue);
+      padding-left: 15px;
+    }
+
+    .language-display {
+      background-color: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      position: relative;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .language-display:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .language-label {
+      font-family: 'Cabin', sans-serif;
+      font-size: 13px;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .language-label i {
+      margin-right: 6px;
+      color: var(--travel-blue);
+    }
+
+    .english-text {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--travel-blue);
+      cursor: pointer;
+      padding: 12px 0;
+      font-family: 'Cabin', sans-serif;
+      transition: all 0.2s ease;
+      border-bottom: 1px dashed transparent;
+    }
+
+    .english-text:hover {
+      color: var(--travel-green);
+      border-bottom: 1px dashed var(--travel-green);
+    }
+
+    .situation-english {
+      display: none;
+    }
+
+    .situation-english.visible {
+      display: block;
+    }
+
+    .translation {
+      font-size: 18px;
+      color: var(--ink);
+      margin-top: 15px;
+      padding: 15px;
+      background-color: rgba(248, 245, 233, 0.7);
+      border-radius: 6px;
+      border-left: 4px solid var(--travel-yellow);
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .translation.visible {
+      display: block;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Cabin', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .btn-primary {
+      background-color: var(--travel-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #0d4a9c;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(26, 95, 180, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: var(--travel-blue);
+      border: 2px solid var(--travel-blue);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(26, 95, 180, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .btn-nav {
+      background-color: var(--paper-dark);
+      color: var(--travel-blue);
+      border: 2px solid var(--border);
+    }
+
+    .btn-nav:hover {
+      background-color: rgba(26, 95, 180, 0.05);
+      transform: translateY(-3px);
+      border-color: var(--travel-light-blue);
+    }
+
+    .navigation-group {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .nav-btn {
+      flex: 1;
+    }
+
+    .counter {
+      font-family: 'Cabin', sans-serif;
+      font-size: 14px;
+      color: var(--ink-light);
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .travel-tip {
+      background-color: rgba(249, 240, 107, 0.3);
+      border-left: 4px solid var(--travel-yellow);
+      padding: 15px;
+      margin-top: 25px;
+      border-radius: 0 6px 6px 0;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .travel-tip i {
+      color: var(--travel-yellow);
+      font-size: 20px;
+      margin-right: 12px;
+      margin-top: 2px;
+    }
+
+    .travel-tip p {
+      color: var(--ink-light);
+      font-size: 15px;
+    }
+
+    /* Footer - Boarding Pass Style */
+    .boarding-pass {
+      background-color: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 20px;
+      position: relative;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      border-top: 5px dotted var(--border);
+    }
+
+    .boarding-title {
+      font-family: 'Cabin', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--travel-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .flight-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .flight-detail {
+      text-align: center;
+      flex: 1;
+    }
+
+    .flight-detail .label {
+      font-size: 13px;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .flight-detail .value {
+      font-family: 'Cabin', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--travel-blue);
+    }
+
+    .destination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px 0;
+      position: relative;
+    }
+
+    .city {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--travel-green);
+    }
+
+    .plane-icon {
+      margin: 0 25px;
+      color: var(--travel-red);
+      font-size: 22px;
+    }
+
+    .route-line-footer {
+      height: 2px;
+      background-color: var(--border);
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      z-index: -1;
+    }
+
+    .motivational-message {
+      text-align: center;
+      font-style: italic;
+      color: var(--ink-light);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+      font-size: 15px;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes stampAnimation {
+      0% { transform: translateY(-50%) scale(0.8); opacity: 0; }
+      70% { transform: translateY(-50%) scale(1.1); }
+      100% { transform: translateY(-50%) scale(1); opacity: 1; }
+    }
+
+    .stamp-animation {
+      animation: stampAnimation 0.5s ease forwards;
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .content-columns {
+        flex-direction: column;
+      }
+      
+      .container {
+        padding: 0 10px;
+      }
+      
+      .passport-title {
+        font-size: 26px;
+      }
+      
+      .passport-stamp {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+        right: 15px;
+        top: 15px;
+      }
+      
+      .btn {
+        min-width: 100%;
+      }
+      
+      .flight-info {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .english-text {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .passport-header {
+        padding: 20px;
+      }
+      
+      .passport-title {
+        font-size: 22px;
+      }
+      
+      .passport-subtitle {
+        font-size: 14px;
+      }
+      
+      .card-header h2 {
+        font-size: 20px;
+      }
+      
+      .english-text {
+        font-size: 18px;
+      }
+      
+      .btn {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+      
+      .navigation-group {
+        flex-direction: column;
+      }
+    }
+
+    /* Efeitos de linhas de caderno */
+    .notebook-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 24px,
+        rgba(0, 0, 0, 0.05) 24px,
+        rgba(0, 0, 0, 0.05) 25px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Cabeçalho estilo Passaporte -->
+    <header class="passport-header">
+      <div class="passport-stamp">
+        <i class="fas fa-globe-americas"></i>
+      </div>
+      <h1 class="passport-title">ENGLISH</h1>
+      <p class="passport-subtitle">Todo dia um pouquinho</p>
+    </header>
+
+    <!-- Layout de duas colunas -->
+    <div class="content-columns">
+      <!-- Coluna 1: Situação do Destino -->
+      <div class="column">
+        <div class="notebook-card">
+          <div class="notebook-lines"></div>
+          <div class="card-header">
+            <div class="header-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <h2>Situação</h2>
+            <div id="situationStamp" class="stamp"></div>
+          </div>
+          
+          <div class="card-content">
+            <div class="situation-label">
+              <i class="fas fa-map-pin"></i>
+              <span id="situationPrompt"></span>
+            </div>
+            
+            <div id="situationAnswer">
+              <div class="language-display">
+                <div class="language-label">
+                  <i class="fas fa-language"></i> Em Inglês
+                </div>
+                <div id="situationEnglish" class="english-text situation-english"></div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn btn-primary" id="toggleSituationBtn" onclick="toggleSituation()">
+                <i class="fas fa-eye"></i> <span id="situationBtnText">Ver Solução</span>
+              </button>
+              
+              <div class="navigation-group">
+                <button class="btn btn-nav nav-btn" onclick="prevSituation()">
+                  <i class="fas fa-chevron-left"></i> Anterior
+                </button>
+                <button class="btn btn-nav nav-btn" onclick="nextSituation()">
+                  Próximo <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <div id="situationCounter" class="counter"></div>
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna 2: Vocabulário de Viagem -->
+      <div class="column">
+        <div class="notebook-card">
+          <div class="notebook-lines"></div>
+          <div class="card-header">
+            <div class="header-icon" style="background-color: var(--travel-green);">
+              <i class="fas fa-suitcase-rolling"></i>
+            </div>
+            <h2>Vocabulário</h2>
+
+          </div>
+          
+          <div class="card-content">
+            <div class="language-display">
+              <div class="language-label">
+                <i class="fas fa-language"></i> Expressão em Inglês
+              </div>
+              <div id="vocabEnglish" class="english-text"></div>
+              
+              <div class="language-label" style="margin-top: 20px;">
+                <i class="fas fa-exchange-alt"></i> Significado em Português
+              </div>
+              <div id="vocabTranslation" class="translation"></div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn btn-primary" id="toggleVocabBtn" onclick="toggleVocab()">
+                <i class="fas fa-eye"></i> <span id="vocabBtnText">Revelar Significado</span>
+              </button>
+              
+              <div class="navigation-group">
+                <button class="btn btn-nav nav-btn" onclick="prevVocab()">
+                  <i class="fas fa-chevron-left"></i> Anterior
+                </button>
+                <button class="btn btn-nav nav-btn" onclick="nextVocab()">
+                  Próximo <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rodapé - Cartão de Embarque -->
+    <footer class="boarding-pass">
+   
+
+        "Viajar é a única coisa que você compra que o torna mais rico. Aprender um idioma é sua passagem para o mundo."
+      </div>
+    </footer>
+  </div>
+
+  <script>
+ 
+    
+
+    // Constante global
+    const LANGUAGE = "english";
+
+    // Variáveis de controle
+    let currentSituationIndex = 0;
+    let currentVocabIndex = 0;
+    let currentDestinationIndex = 0;
+    let currentLevelIndex = 0;
+    let streakDays = 7;
+    let situationRevealed = false;
+    let vocabRevealed = false;
+
+    // Funções utilitárias
+    function getRandomItem(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function openYouGlish(text) {
+      const url = `https://youglish.com/pronounce/${encodeURIComponent(text)}/${LANGUAGE}`;
+      window.open(url, "_blank");
+    }
+
+    // Funções para gerenciar situações
+    function updateSituation() {
+      const item = situations[currentSituationIndex];
+
+      // Mostra apenas a situação
+      document.getElementById("situationPrompt").innerText = item.situation;
+
+      // Define o texto em inglês
+      const englishElement = document.getElementById("situationEnglish");
+      englishElement.innerText = `"${item.text}"`;
+      englishElement.classList.remove("visible");
+      englishElement.onclick = () => openYouGlish(item.text);
+      
+      // Atualizar o carimbo com a posição
+      const stamp = document.getElementById("situationStamp");
+     
+      stamp.classList.remove("stamp-animation");
+      void stamp.offsetWidth; // Trigger reflow
+      stamp.classList.add("stamp-animation");
+      
+    
+      // Resetar estado do botão
+      situationRevealed = false;
+      document.getElementById("situationBtnText").innerText = "Ver Solução";
+    }
+
+    function nextSituation() {
+      currentSituationIndex = (currentSituationIndex + 1) % situations.length;
+      updateSituation();
+    }
+
+    function prevSituation() {
+      currentSituationIndex = (currentSituationIndex - 1 + situations.length) % situations.length;
+      updateSituation();
+    }
+
+    function toggleSituation() {
+      const englishElement = document.getElementById("situationEnglish");
+      const buttonTextElement = document.getElementById("situationBtnText");
+      
+      if (englishElement.classList.contains("visible")) {
+        englishElement.classList.remove("visible");
+        buttonTextElement.innerText = "Ver Solução";
+      } else {
+        englishElement.classList.add("visible");
+        buttonTextElement.innerText = "Esconder Solução";
+      }
+    }
+
+    // Funções para gerenciar vocabulário
+    function updateVocab() {
+      const item = vocabulary[currentVocabIndex];
+
+      const eng = document.getElementById("vocabEnglish");
+      const tr = document.getElementById("vocabTranslation");
+
+      eng.innerText = item.text;
+      tr.innerText = item.translation;
+      tr.classList.remove("visible");
+
+      eng.onclick = () => openYouGlish(item.text);
+      
+      // Atualizar o carimbo com a posição
+      const stamp = document.getElementById("vocabStamp");
+      stamp.innerText = `${currentVocabIndex + 1}/${vocabulary.length}`;
+      stamp.classList.remove("stamp-animation");
+      void stamp.offsetWidth; // Trigger reflow
+      stamp.classList.add("stamp-animation");
+
+      
+      // Resetar estado do botão
+      vocabRevealed = false;
+      document.getElementById("vocabBtnText").innerText = "Revelar Significado";
+    }
+
+    function nextVocab() {
+      currentVocabIndex = (currentVocabIndex + 1) % vocabulary.length;
+      updateVocab();
+    }
+
+    function prevVocab() {
+      currentVocabIndex = (currentVocabIndex - 1 + vocabulary.length) % vocabulary.length;
+      updateVocab();
+    }
+
+    function toggleVocab() {
+      const translationElement = document.getElementById("vocabTranslation");
+      const buttonTextElement = document.getElementById("vocabBtnText");
+      
+      if (translationElement.classList.contains("visible")) {
+        translationElement.classList.remove("visible");
+        buttonTextElement.innerText = "Revelar Significado";
+      } else {
+        translationElement.classList.add("visible");
+        buttonTextElement.innerText = "Esconder Significado";
+      }
+    }
+
+    // Funções para gerenciar informações de viagem
+    function updateTravelInfo() {
+      // Atualizar destino
+      currentDestinationIndex = (currentDestinationIndex + 1) % destinations.length;
+      const destination = destinations[currentDestinationIndex];
+      
+      document.getElementById("cityFrom").innerText = destination.from;
+      document.getElementById("cityTo").innerText = destination.to;
+      
+      // Atualizar nível
+      currentLevelIndex = (currentLevelIndex + 1) % levels.length;
+      const level = levels[currentLevelIndex];
+      
+      document.getElementById("currentLevel").innerText = level.current;
+      document.getElementById("nextLevel").innerText = level.next;
+      
+      // Atualizar dias de prática
+      document.getElementById("daysLeft").innerText = streakDays;
+      
+      // Atualizar citação
+      const quoteElement = document.getElementById("dailyQuote");
+      const randomQuote = getRandomItem(travelQuotes);
+      quoteElement.innerText = `"${randomQuote}"`;
+    }
+
+    // Inicialização
+    function init() {
+      // Configurar streak
+      const lastAccess = localStorage.getItem('lastAccessDate');
+      const today = new Date().toDateString();
+      
+      if (lastAccess !== today) {
+        localStorage.setItem('lastAccessDate', today);
+        
+        let streak = parseInt(localStorage.getItem('streak')) || 7;
+        const lastAccessDate = localStorage.getItem('lastAccessDateObj');
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        if (lastAccessDate === yesterday.toDateString()) {
+          streak += 1;
+        } else if (lastAccessDate !== today) {
+          streak = 1;
+        }
+        
+        localStorage.setItem('streak', streak);
+        localStorage.setItem('lastAccessDateObj', today);
+        
+        streakDays = streak;
+      } else {
+        streakDays = parseInt(localStorage.getItem('streak')) || 7;
+      }
+      
+      updateSituation();
+      updateVocab();
+      updateTravelInfo();
+    }
+
+    // Inicializar quando a página carregar
+    window.onload = init;
+  </script>
+</body>
+</html>
